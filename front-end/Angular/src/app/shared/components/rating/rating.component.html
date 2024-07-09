@@ -1,0 +1,7 @@
+<div class="d-flex text-muted">
+  <ng-container *ngFor="let i of getNumbers(starFill)">
+    <i class="fa fa-star " [class]="this.activeClass"></i>
+  </ng-container>
+<!--  <i class="fa-regular fa-star-half-stroke"></i>-->
+  <i class="fa-regular fa-star" *ngFor="let j of getNumbers(stars - starFill)"></i>
+</div>

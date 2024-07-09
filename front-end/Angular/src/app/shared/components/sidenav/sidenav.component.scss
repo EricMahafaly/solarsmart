@@ -1,0 +1,103 @@
+//$border-separator:#e5e5e9;
+$border-separator:#cbd0dd;
+
+.sidenav{
+  font-size: 12.8px;
+  transition: all .5s ease;
+  //position: fixed;
+  //z-index: 1;
+  //top: 4rem;
+  //border-right: solid 1px $border-separator;
+  //width: 14.875rem;
+  height: calc(100vh - 4rem) !important;
+  background: #fff;
+  //background: #0f172a;
+
+  .sidenav-nav{
+    list-style: none;
+    //padding: 1.5rem 1.5rem;
+    padding: 0.5rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    //align-items: center;
+    justify-content: flex-start;
+    text-align: start;
+
+    .sidenav-group{
+      padding: 0.2rem 0;
+    }
+
+    .sidenav-nav-item.nav-link{
+        color: #525b75 !important;
+    }
+
+    .sidenav-nav-item{
+
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 20px;
+      text-decoration: none;
+      border-radius: 6px;
+
+
+      transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+
+      .sidenav-link-icon{
+        //width: 2rem;
+        //min-width: 2rem;
+        //margin: 0 0.5rem;
+        margin-right: 10px;
+        text-align: center;
+      }
+    }
+
+  }
+
+  .sidenav-nav-item.nav-link:not(.active):hover{
+    background: #eff2f6;
+    //background: #2c3344;
+  }
+}
+
+.sub-active{
+  color: #66a1ff !important;
+  background: #eff2f6;
+  //background: #2c3344;
+}
+
+.sidenav-nav-item.active{
+  //background: #eff2f6;
+  //background: #0f172a;
+  //background: #6caf33;
+  //background: #f6cb50;
+  //background: #48791e !important;
+  //background: #198754 !important;
+  background: #69ab25 !important;
+  color: white;
+}
+
+.active{
+  //color: #66a1ff !important;
+  color: white !important;
+
+  //.sidenav-nav-item{
+  //  background: #eff2f6 !important;
+  //}
+
+  .menu-collapse-icon,
+  .sidenav-link-icon,
+  .sidenav-link-text{
+    //color: #66a1ff;
+    color: white !important;
+
+  }
+}
+
+
+
+

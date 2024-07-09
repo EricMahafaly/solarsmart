@@ -1,0 +1,6 @@
+<nav class="nav">
+  <a class="nav-link" [class.active]="isActive(menu.link)" [routerLink]="menu.link" *ngFor="let menu of dMenus">
+    <i [class]="menu.icon" class="me-2" *ngIf="menu.icon"></i>
+    <span class="menu-text">{{menu.title}}</span>
+  </a>
+</nav>

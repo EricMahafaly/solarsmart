@@ -1,0 +1,63 @@
+
+<div class="modal-header d-flex justify-content-between">
+  <div>
+    <p cModalTitle class="fw-semibold fs-18">Additional information</p>
+  </div>
+  <div>
+    <button (click)="hide()" class="bg-secondary-subtle btn rounded-circle">
+      <i class="fas fa-xmark"></i>
+    </button>
+  </div>
+</div>
+<div class="modal-body">
+  <div [formGroup]="infoForm">
+    <div class="row">
+      <div class="col-5">
+        <label class="form-label">Section name:</label>
+        <input type="text" class="form-control" formControlName="name" validation>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-12">
+        <label class="form-label">Description:</label>
+        <textarea type="text" class="form-control " pInputTextarea [autoResize]="true" formControlName="description"></textarea>
+      </div>
+    </div>
+    <!--      <div class="row mt-3">-->
+    <!--        <div clas></div>-->
+    <!--      </div>-->
+
+    <div formArrayName="details">
+      <p class="">
+        <i class="fas fa-asterisk me-1"></i>
+        <span class="fw-semibold"> Details:</span>
+      </p>
+      <div class="container px-3 pb-2" *ngFor="let _ of getDetailsGroup(); let j = index" [formGroupName]="j">
+        <div class="d-flex align-items-center">
+          <div>
+            <label class="form-label" >Name:</label>
+            <input type="text" validation class="form-control" formControlName="key">
+          </div>
+          <div class="ms-4">
+            <label class="form-label" >Value:</label>
+            <input type="text" validation class="form-control" formControlName="value">
+          </div>
+
+          <div class="col-auto d-flex align-items-center ms-3">
+            <i class="fa-solid fa-trash text-danger cursor-pointer" (click)="confirmDelete(j)"></i>
+          </div>
+        </div>
+      </div>
+      <div >
+        <span class="cursor-pointer " (click)="addDetail()">
+          <i class="fa-solid fa-circle-plus text-success"></i>
+          <span class="ms-1">Add more details</span>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+      <button class="btn btn-outline-success" type="button" (click)="onSubmit()">Save changes</button>
+</div>

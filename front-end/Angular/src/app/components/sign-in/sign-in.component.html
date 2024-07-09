@@ -1,0 +1,73 @@
+<!--<div class="vh-100 overflow-y-auto scroll-bar">-->
+  <div class="auth-bg"></div>
+  <div class="container">
+    <div class="login py-5">
+      <div class="col-xl-8 col-sm-10 col-11">
+        <div class="card border-1 card-auth">
+          <div class="card-body mb-5">
+            <div class="gx-0 gy-7 row">
+              <div class="auth-title-box col-auto rounded-3 position-relative ">
+                <div class="card-sign-up position-relative px-4 px-lg-5 py-5 pb-sm-5 text-center text-md-start pb-lg-7">
+                  <h3 class="mb-3 text-black fs-7 h3">Solar Smart System</h3>
+                  <p class="desc">
+                    Welcome to the solar smart system platform.
+                  </p>
+                  <!--                <p class="text-700">Give yourself some hassle-free development process with the uniqueness of Phoenix!</p>-->
+                </div>
+              </div>
+              <div class="mx-auto col">
+                <div class="text-center">
+                  <span class="d-inline-block text-decoration-none mb-4" >
+                    <div class="fw-bolder fs-5 d-inline-block d-flex align-items-center">
+<!--                      <img src="./assets/img/logo.png" width="58"  alt="avatar"/>-->
+                      <img src="./assets/img/logo_text.png" width="90"  alt="avatar"/>
+                    </div>
+                  </span>
+                </div>
+                <div class="auth-form-box">
+                  <div class="text-center mb-5">
+                    <h3 class="h3">Sign In</h3>
+                    <!--                  <p>Accédez à votre compte</p>-->
+                    <p>Access your account</p>
+                  </div>
+                  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+                    <div class="mb-3 text-start">
+                      <label class="form-label" >Email Address</label>
+                      <input placeholder="Email" validation formControlName="email" type="email" id="email" class="form-control">
+
+
+                    </div>
+                    <div class="mb-3 text-start">
+                      <div class="col-lg-12 col-sm-12">
+                        <div>
+                          <label class="form-label">Password</label>
+                          <div>
+                            <p-password
+                              styleClass="col-12"
+                              placeholder="Password"
+                              formControlName="password"
+                              inputStyleClass="form-control"
+                              [toggleMask]="true"
+                              [feedback]="false"
+                            >
+                            </p-password>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <button type="submit" class="w-100 mb-3 btn btn-success">Sign up</button>
+
+                    <div class="text-center mt-2">
+                      <!--                    <a class="fw-semibold text-decoration-none" [routerLink]="'/sign-up'">Créez un compte</a>-->
+                      <a class="fw-semibold text-decoration-none" [routerLink]="'/sign-up'">Create account</a>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--</div>-->

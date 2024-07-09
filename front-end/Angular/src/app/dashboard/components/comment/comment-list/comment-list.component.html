@@ -1,0 +1,69 @@
+<div class="d-flex bg-white">
+  <div class="position-relative d-flex flex-auto flex-column bg-white max-w-100">
+
+    <div class="flex-auto justify-content-center overflow-y-auto">
+      <div class="text-secondary my-5 d-flex align-items-center justify-content-center flex-column" *ngIf="!haveData()">
+        <div><i class="far fa-comments fs-1"></i></div>
+        <div class="mt-2 comment">
+          No reviews yet.
+        </div>
+      </div>
+      <div class="d-flex py-4 px-3 border-bottom" *ngFor="let rating of ratings; index as i">
+
+        <div class="position-relative d-flex flex-0 justify-content-center">
+          <p-avatar icon="pi pi-user" styleClass="mr-2" shape="square" *ngIf="!rating.customerImage"></p-avatar>
+        </div>
+        <div class="position-relative d-flex flex-0 justify-content-center" *ngIf="rating.customerImage">
+          <p-avatar [image]="rating.customerImage" styleClass="mr-2" size="xlarge" shape="circle"></p-avatar>
+        </div>
+<!--        <div class="position-relative d-flex flex-0 justify-content-center">-->
+<!--          <p-avatar icon="pi pi-user" styleClass="mr-2" shape="circle"></p-avatar>-->
+<!--        </div>-->
+
+        <div class="min-w-0 ms-4" >
+          <div class="d-flex">
+            <div class="font-medium leading-5 text-truncate text-dark">{{rating.customerName}}</div>
+
+            <div class="ms-3">
+              <app-rating [value]="rating.score" activeClass="text-gold"></app-rating>
+            </div>
+          </div>
+          <div class="leading-5 text-secondary my-1">
+            {{ showFullTexts[i] ? rating.comment : (rating.comment | truncate: 100) }}
+            <a class="cursor-pointer" *ngIf="rating.comment.length > 100" (click)="showFullTexts[i] = !showFullTexts[i]">
+              {{ showFullTexts[i] ? 'Voir moins' : '...' }}
+            </a>
+          </div>
+        </div>
+        <div class="d-flex flex-column align-items-end align-self-start ms-auto ps-2">
+          <div class="text-sm leading-5 text-secondary">{{rating.date | date:'dd/MM/yyyy'}}</div>
+        </div>
+      </div>
+<!--      <div class="d-flex py-4 px-5 border-bottom">-->
+<!--        <div class="position-relative d-flex flex-0 justify-content-center">-->
+<!--          <p-avatar icon="pi pi-user" styleClass="mr-2" shape="circle"></p-avatar>-->
+<!--        </div>-->
+
+<!--        <div class="min-w-0 ms-4">-->
+<!--          <div class="d-flex">-->
+<!--            <div class="font-medium leading-5 text-truncate text-dark">Nunez Faulkner</div>-->
+<!--            <div class="ms-3">-->
+<!--              <app-rating [value]="1" activeClass="text-gold"></app-rating>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="leading-5 text-secondary my-1">-->
+<!--            {{ showFullText ? text : (text | truncate: 50) }}-->
+<!--            <a class="cursor-pointer" *ngIf="text.length > 100" (click)="showFullText = !showFullText">-->
+<!--              {{ showFullText ? 'Voir moins' : '...' }}-->
+<!--            </a>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="d-flex flex-column align-items-end align-self-start ms-auto ps-2">-->
+<!--          <div class="text-sm leading-5 text-secondary">26/04/2021</div>-->
+<!--        </div>-->
+<!--      </div>-->
+
+
+    </div>
+  </div>
+</div>

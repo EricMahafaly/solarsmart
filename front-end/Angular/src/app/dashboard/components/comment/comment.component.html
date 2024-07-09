@@ -1,0 +1,55 @@
+<div class="bg-white vh-100">
+  <ng-container *ngIf="this.ratings.loading">
+    <app-list-loader [number]="5"></app-list-loader>
+  </ng-container>
+  <ng-container *ngIf="!this.ratings.loading">
+    <div class="position-sticky sticky-top">
+      <div class="d-flex shadow align-items-start p-3 justify-content-between position-sticky sticky-top">
+        <div class="text-lg font-medium text-truncate">Comments</div>
+        <div class="d-flex align-items-end">
+          <app-pagination
+            [pagination]="pagination"
+            [showPageNumber]="false"
+            (currentPage)="changePage($event)"
+          ></app-pagination>
+        </div>
+      </div>
+      <div class="d-flex justify-content-between position-sticky sticky-top align-items-center p-2 border-bottom">
+        <div class="d-inline-flex align-items-center  justify-content-start ">
+
+          <ng-container *ngFor="let filter of filters">
+            <div class="py-2 px-3 text-muted cursor-pointer ms-2 rounded-3 d-flex align-items-center border" [class.bg-primary-subtle]="filter.active" (click)="applyFilter(filter)" >
+              <i class="me-1 fas fa-check" *ngIf="filter.active"></i> {{filter.label}} <i class="fa-solid fa-star ms-1 " *ngIf="filter.icon" style="font-size: 10px;"></i>
+            </div>
+          </ng-container>
+        </div>
+
+        <div class="me-3 position-relative">
+          <div #parent class="cursor-pointer " (click)="showFilterDate = !showFilterDate">
+            <span class="me-2">{{filterDateActive.label}}</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" id="sort">
+              <path fill="none" d="M0 0h24v24H0V0z"></path>
+              <path d="M4 18h4c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1s.45 1 1 1zM3 7c0 .55.45 1 1 1h16c.55 0
+          1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1zm1 6h10c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1
+          .45-1 1s.45 1 1 1z"></path>
+            </svg>
+          </div>
+
+          <app-select-generic
+            [parent]="parent"
+            [(show)]="showFilterDate"
+            [withSearch]="false"
+            [options]="this.filterDateOptions"
+            (selectChange)="sort($event)"
+            [positionClass]="'dropdown-menu-right'"
+          ></app-select-generic>
+        </div>
+      </div>
+    </div>
+
+    <div class="overflow-y-auto scroll-bar" style="height: calc(100vh - 12rem);"> <!-- Adjust height as needed -->
+      <app-comment-list [data]="this.ratings.data"></app-comment-list>
+    </div>
+  </ng-container>
+
+</div>

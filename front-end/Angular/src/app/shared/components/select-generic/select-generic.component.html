@@ -1,0 +1,22 @@
+<div #menu id="dropdown" class="drop-menu scroll-menu show" [class]="this.positionClass"  *ngIf="show" >
+  <div class="drop-menu-search p-1" *ngIf="withSearch">
+    <input type="text" class="form-control" [formControl]="searchControl" id="optionSearch" placeholder="Search" name="">
+  </div>
+
+    <div *ngIf="!options.length" class="not-found-result text-center p-2 ">
+      <p>Aucune résultat trouvée...</p>
+    </div>
+
+  <div
+    class="drop-item d-flex justify-content-between align-items-center scroll-wrap-delayed"
+    *ngFor="let option of options"
+    [class.active]="option.selected"
+    (click)="select(option)">
+    <div>
+      <span>{{ option.label }}</span>
+    </div>
+    <span *ngIf="option.selected">
+      <i class="fa-solid fa-check"></i>
+    </span>
+  </div>
+</div>

@@ -1,0 +1,180 @@
+<div class="vh-100 overflow-y-auto scroll-bar pb-4">
+  <div class="position-sticky sticky-top bg-white d-flex align-items-center justify-content-between py-4 px-5 border-bottom">
+    <div class="">
+      <div class="fs-4 font-extrabold tracking-tight text-gold-50">Welcome</div>
+      <div class="text-muted font-medium">Welcome back to your dashboard</div>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+
+    <div class="row mt-3 align-items-center">
+
+      <div class="col-xl-4">
+        <div class="card" *ngIf="clientsStat.loading">
+          <p-skeleton height="117px" width="100%"></p-skeleton>
+        </div>
+<!--        <div class="card card-custom bg-danger-subtle border-danger-subtle">-->
+        <ng-container *ngIf="!clientsStat.loading">
+          <div class="card card-custom bg-{{getCustomerColorState(clientsStat.data.percentageToLast)}}-subtle
+        border-{{getCustomerColorState(clientsStat.data.percentageToLast)}}-subtle">
+            <div class="card-body">
+              <div class="d-flex align-items-start justify-content-between m-6 mb-0">
+                <div class="text-lg font-medium text-truncate">Clients</div>
+                <div class="ms-2">
+                <span class=" py-1 px-2 rounded-5">
+                  <i class="pi pi-user-plus"></i>
+                  <!--                  <span class="font-medium text-sm text-secondary">This month</span>-->
+                </span>
+                </div>
+              </div>
+              <div class="d-flex flex-row align-items-center mx-6 mt-3">
+                <!--              <div class="fs-2 fw-bold tracking-tighter leading-tight">10</div>-->
+                <div class="fs-2 fw-bold tracking-tighter leading-tight">{{clientsStat.data.count}}</div>
+                <div class="d-flex flex-column align-content-end ms-3">
+                  <!--                <i class="fa fa-arrow-trend-down text-danger"></i>-->
+                  <i class="fa fa-arrow-trend-{{getCustomerStateIcon(clientsStat.data.percentageToLast)}} text-{{getCustomerColorState(clientsStat.data.percentageToLast)}}"></i>
+                  <div class="d-flex align-items-center ms-1 ms-0 mt-1 text-md leading-none whitespace-nowrap text-secondary">
+                    <!--                  <span class="font-medium text-danger">2%</span>-->
+                    <span class="font-medium text-{{getCustomerColorState(clientsStat.data.percentageToLast)}}">
+                    {{clientsStat.data.percentageToLast}}%
+                  </span>
+                    <span class="ms-1">compared to last month</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+
+      <div class="col-xl-3">
+        <div class="card" *ngIf="avgRating.loading">
+          <p-skeleton height="117px" width="100%"></p-skeleton>
+        </div>
+        <div class="card card-custom border-gold-subtle bg-gold-subtle" *ngIf="!avgRating.loading">
+          <div class="card-body">
+            <div class="d-flex align-items-start justify-content-between m-6 mb-sm-2 mb-0">
+              <div class="text-lg font-medium text-truncate">Average rating</div>
+              <div class="ms-2">
+              <span class="py-1 px-2">
+                <span class="font-medium"><i class="fa fa-star text-gold"></i></span>
+              </span>
+              </div>
+            </div>
+            <div class="d-flex flex-row align-items-center mx-6 mt-3">
+              <div class="fs-2 fw-bold tracking-tighter leading-tight">{{avgRating.data}}</div>
+              <div class="d-flex ms-1 mt-2">
+                <i class="fa fa-star text-gold" style="font-size: 14px"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-3">
+        <div class="card" *ngIf="reportUnsolved.loading">
+          <p-skeleton height="117px" width="100%"></p-skeleton>
+        </div>
+<!--        <div class="card card-custom bg-danger-subtle border-danger-subtle" >-->
+        <ng-container *ngIf="!reportUnsolved.loading">
+
+          <div class="card card-custom bg-{{getReportCountColor(this.reportUnsolved.data)}}-subtle border-{{getReportCountColor(this.reportUnsolved.data)}}-subtle" >
+            <div class="card-body">
+              <div class="d-flex align-items-start justify-content-between mb-sm-2 m-6 mb-0">
+                <div class="text-lg font-medium text-truncate">Unresolved report</div>
+                <div class="ms-2">
+                <span class=" py-1 px-2 rounded-5">
+                  <i class="fa fa-bug"></i>
+                </span>
+                </div>
+              </div>
+              <div class="d-flex flex-row align-items-center mx-6 mt-3">
+                <div class="fs-2 fw-bold tracking-tighter leading-tight">{{this.reportUnsolved.data}}</div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col" >
+        <div class="card card-custom">
+          <div class="card-body">
+            <div class="d-flex align-items-start justify-content-between m-6 mb-0">
+              <div class="text-lg font-medium text-truncate">Latest rating</div>
+              <div class="ms-2">
+                <button class="btn bg-primary-subtle py-1 px-2 rounded-5" [routerLink]="'/user-space/comments/'">
+                  <span class="font-medium text-sm text-secondary">View all</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="mt-2" >
+              <ng-container *ngIf="this.ratings.loading">
+                <app-list-loader [number]="5"></app-list-loader>
+              </ng-container>
+              <ng-container *ngIf="!ratings.loading">
+                <app-comment-list [data]="ratings.data"></app-comment-list>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 ">
+        <div class="card card-custom">
+          <div class="card-body" >
+            <div class="fs-15 card-title fw-semibold">
+              Module statistics
+            </div>
+            <ng-container *ngIf="moduleStat.loading">
+              <p-skeleton width="100%" height="50vh"></p-skeleton>
+            </ng-container>
+            <ng-container *ngIf="!moduleStat.loading">
+              <div class="d-flex justify-content-center">
+                <div class="col-7">
+                  <p-chart type="pie" [data]="moduleDataChart" [options]="moduleChartOptions"></p-chart>
+                </div>
+              </div>
+              <div class="my-3">
+                <div class="d-flex border-bottom pb-2">
+                  <div class="d-flex align-items-center">
+                    <div>
+                      <!--                  <i class="fa fa-circle" style="color: rgb(49, 130, 206);"></i>-->
+                      <i class="fa fa-circle" style="color: rgb(99, 179, 237);"></i>
+                    </div>
+                    <div class="ms-3 truncate">Active:</div>
+                  </div>
+                  <div class="font-medium text-start ms-2">{{moduleStat.data.used}}</div>
+                </div>
+                <div class="d-flex g-3 border-bottom py-3">
+                  <div class="d-flex align-items-center">
+                    <div>
+                      <!--                  <i class="fa fa-circle" style="color: rgb(99, 179, 237);"></i>-->
+<!--                      <i class="fa fa-circle" style="color: #D1E7DDFF;"></i>-->
+                      <i class="fa fa-circle" style="color: #e3f3ec;"></i>
+                    </div>
+                    <div class="ms-3 text-truncate">Inactive: </div>
+                  </div>
+                  <div class="font-medium text-start ms-2">{{moduleStat.data.unused}}</div>
+                </div>
+                <div class="d-flex g-3 pb-3 py-3">
+                  <div class="d-flex align-items-center">
+                    <div>
+                      <!--                  <i class="fa fa-circle" style="color: rgb(99, 179, 237);"></i>-->
+                      <i class="fa fa-circle" style="color: #198754;"></i>
+                    </div>
+                    <div class="ms-3 text-truncate">Total: </div>
+                  </div>
+                  <div class="font-medium text-start ms-2">{{moduleStat.data.total}}</div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

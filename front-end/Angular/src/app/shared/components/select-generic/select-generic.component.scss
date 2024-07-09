@@ -1,0 +1,77 @@
+.drop-menu{
+  list-style: none;
+  background: #ffffff;
+  margin-top: 4px;
+  box-shadow: 0 7px 12px 0 #d7d5e2;
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
+  display: none;
+  position: absolute;
+  top: 100%;
+  //width: calc(100% + 4rem) !important;
+  width: calc(100% + 4.5rem) !important;
+  //width: fit-content;
+  z-index: 900;
+}
+
+
+.drop-item{
+  padding: 0.6rem 15px;
+  //transition: all 0.1s;
+  margin: 0.2rem 5px 0 5px;
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+}
+
+.drop-menu-search .form-control{
+  &:hover, &:focus{
+    box-shadow: none;
+  }
+}
+
+.drop-item:last-child{
+  margin-bottom: 10px;
+}
+
+.drop-item:hover{
+  background: #2877e7 !important;
+  color: #fffefe;
+  border-radius: 10px;
+}
+
+.active{
+  background: #e7e7ff;
+  border-radius: 10px;
+
+  //&:after{
+  //  content: "\f00c"; /* Échappement Unicode de l'icône check (\f00c) */
+  //  font-family: 'Font Awesome', serif; /* Utilisez la police Font Awesome */
+  //  margin-left: 5px;
+  //}
+}
+
+.drop-menu{
+  &::-webkit-scrollbar{
+    width: 0.5rem;
+  }
+
+  &::-webkit-scrollbar-track{
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb{
+    background: #889193;
+    border-radius: 20px;
+  }
+}
+
+.scroll-menu {
+  //min-width: 200px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.show {
+  display: block;
+}

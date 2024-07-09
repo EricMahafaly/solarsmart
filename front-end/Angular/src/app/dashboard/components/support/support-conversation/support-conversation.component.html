@@ -1,0 +1,73 @@
+<div class="d-flex flex-column vh-100">
+  <mat-drawer-container class="flex-auto">
+    <mat-drawer-content class="d-flex flex-auto flex-column overflow-y-auto">
+      <div class="d-flex justify-content-between align-items-center px-2 py-3 text-secondary bg-gray-50 border-bottom"
+        *ngIf="!comments.loading">
+        <div class="d-flex align-items-center">
+          <div class="position-relative d-flex flex-0 align-items-center justify-content-center w-10 h-10">
+            <p-avatar icon="pi pi-user" styleClass="mr-2" shape="circle"></p-avatar>
+          </div>
+          <div class="ms-4 text-lg font-medium leading-5 text-truncate">{{comments.data.customerName}}</div>
+        </div>
+      </div>
+      <div class="d-flex flex-column flex-auto overflow-y-auto scroll-bar h-100 p-3" >
+
+        <ng-container *ngIf="!comments.loading">
+          <ng-container  *ngFor="let comment of comments.data.comments">
+            <div class="d-flex flex-column align-items-end" *ngIf="comment.senderType == SenderType.TECHNICIAN">
+              <div class="position-relative px-message py-message rounded-2 bg-success text-light">
+<!--              <div class="position-relative px-message py-message rounded-2 bg-success text-blue-50">-->
+                <div class="position-absolute bottom-0 w-3 text-success -right-1 -mr-px">
+                  <svg width="100%" height="100%" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <path
+                        d="M1.01522827,0.516204834 C-8.83532715,54.306274461.7609863,70.5215302 64.8009949,64.3061218
+                        C68.8074951,54.885971130.1663208,52.9997559 37.5036011,0.516204834 L1.01522827,0.516204834 Z"
+                        fill="currentColor" fill-rule="nonzero"
+                      ></path>
+                    </g>
+                  </svg>
+                </div>
+                <div class="">{{comment.text}}</div>
+              </div>
+              <div class="my-1 small font-medium text-secondary mr-3 "> {{comment.date | date:'yyyy-MM-dd hh:mm'}} </div>
+            </div>
+
+            <div class="d-flex flex-column align-items-start" *ngIf="comment.senderType == SenderType.USER">
+              <div class="position-relative px-message py-message rounded-2 bg-gray-10 text-dark">
+<!--              <div class="position-relative px-message py-message rounded-2 bg-gray-500 text-gray-50">-->
+<!--                <div class="position-absolute bottom-0 w-3 text-gray-500 -scale-x-1 mb-px -left-1 -ml-px">-->
+                <div class="position-absolute bottom-0 w-3 text-gray-10 -scale-x-1 mb-px -left-1 -ml-px">
+                  <svg width="100%" height="100%" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <path
+                        d="M1.01522827,0.516204834 C-8.83532715,54.306274461.7609863,70.5215302
+                        64.8009949,64.3061218 C68.8074951,54.885971130.1663208,52.9997559
+                        37.5036011,0.516204834 L1.01522827,0.516204834 Z"
+                        fill="currentColor" fill-rule="nonzero"
+                      ></path>
+                    </g>
+                  </svg>
+                </div>
+                <div class="">{{comment.text}}</div>
+              </div>
+              <!--            <div class="my-1 small font-medium text-secondary mr-3 "> 15:02 </div>-->
+              <div class="my-1 small font-medium text-secondary mr-3 "> {{comment.date | date:'yyyy/MM/dd hh:mm'}} </div>
+            </div>
+          </ng-container>
+        </ng-container>
+
+      </div>
+      <div class="d-flex align-items-end p-3 border-top fw-semibold text-secondary bg-gray-50">
+        <div class="col-10">
+          <textarea rows="1" pInputTextarea [(ngModel)]="commentInput" [autoResize]="true" id="mat-input-1" class="form-control rounded-4 p-3" aria-invalid="false" aria-required="false" style="height: 24px;"></textarea>
+        </div>
+        <div class="d-flex col-auto align-items-start ms-3">
+          <button class="btn text-primary fs-18" (click)="comment()">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
+      </div>
+    </mat-drawer-content>
+  </mat-drawer-container>
+</div>

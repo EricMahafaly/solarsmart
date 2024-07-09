@@ -1,0 +1,20 @@
+<div
+  [@toastTrigger]="(this.show() | async) ? 'open' : 'close'"
+  [class]="(toast.state | async)?.classe" (click)="onPersist()">
+  <div class="toast-icon">
+
+    <span >
+      <i [class]="(toast.state | async)?.icon"  ></i>
+    </span>
+  </div>
+
+  <div class="text-content ps-3 pe-2 py-3">
+    <span>
+      {{this.toast.message | async}}
+    </span>
+  </div>
+
+  <div *ngIf="toast.closeButton | async" class="close" (click)="dismiss()">
+    <i class="fa fa-xmark" ></i>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+.btn.btn-flex{
+  display: inline-flex;
+  align-items: center;
+}
+
+.nav-link{
+  border: none;
+  padding: .6rem !important;
+  /*background-color: ;*/
+
+  color: #2d2e31;
+
+  transition: all 0.2s ease-in-out;
+
+  &:hover{
+    background-color: #f8285a;
+    color: white;
+  }
+}
+
+.option-active{
+  background-color: #f8285a !important;
+  color: white !important;
+}

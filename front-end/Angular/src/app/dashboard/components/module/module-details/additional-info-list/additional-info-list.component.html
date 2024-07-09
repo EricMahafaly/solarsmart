@@ -1,0 +1,69 @@
+<div class="card dashed shadow">
+  <div class="card-body">
+    <table class="table">
+      <tbody>
+      <ng-container *ngFor="let otherInfo of this.data;  index as i">
+        <tr>
+          <td>
+            <span class="fw-bolder text-uppercase">{{otherInfo.name}}</span>
+          </td>
+          <td >
+            <ng-container *ngIf="haveAction()">
+              <div class="d-flex justify-content-center">
+                <div class="cursor-pointer" *ngIf="deletable" (click)="confirmDelete(i)">
+                  <i class="pi pi-trash hover-danger"></i>
+                </div>
+                <div class="cursor-pointer ms-2" *ngIf="editable" (click)="update(i)">
+                  <i class="pi pi-pen-to-square hover-info"></i>
+                </div>
+              </div>
+            </ng-container>
+
+          </td>
+          <td class="cursor-pointer" (click)="collapse(i)">
+            <span >
+              <i [class]="getIcon(i)"></i>
+            </span>
+          </td>
+        </tr>
+        <tr class="border-0">
+          <td colspan="3" class="border-0">
+            <div [(ngbCollapse)]="collapseState[i]">
+              <div class="desc d-flex mb-2" *ngIf="otherInfo.description">
+                <div class="col-12">
+                  <p class="fw-semibold ">
+                    <span class="section-title">Description: </span>
+                  </p>
+                  <span class="text-muted">
+                  {{otherInfo.description}}
+                </span>
+                </div>
+              </div>
+
+              <div class="mt-2">
+                <p class="fw-semibold pb-1 ">
+                  <span class="section-title">Details: </span>
+                </p>
+                <div class="row">
+                  <div class="col-9">
+                    <table class="table mt-2 table-hover">
+                      <tbody>
+                      <tr *ngFor="let detail of otherInfo.details">
+                        <td><i class="fa fa-circle" style="color: rgb(49, 130, 206);"></i></td>
+                        <td>{{detail.key}}</td>
+                        <td>{{detail.value}}</td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </ng-container>
+
+      </tbody>
+    </table>
+  </div>
+</div>

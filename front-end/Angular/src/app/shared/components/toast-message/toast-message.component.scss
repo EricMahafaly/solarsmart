@@ -1,0 +1,85 @@
+@keyframes fadeInFromTop {
+  from {
+    top: -50px; /* Commence en dehors de l'écran vers le haut */
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+%default-toast {
+  //text-align: center;
+  z-index: 9999;
+  position: fixed;
+  align-items: center;
+  border-radius: 12px;
+  padding: 0 16px;
+  border: 1px solid #ffffff;
+  margin-top: 10px;
+  top: 0;
+  left: 50%;
+  //transform: translateX(-50%);
+  transform: translate(-50%, 0%);
+  opacity: 0;
+  animation: fadeInFromTop 500ms ease-out forwards;
+
+  //transition: all 1800ms ease;
+  display: flex;
+  //width: 30%;
+  width: fit-content;
+  box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.2);
+}
+
+
+.toast-icon{
+  //border-radius: 0.40em;
+  //padding: 6px 8px;
+}
+
+.close {
+  color: #f7525a;
+  cursor: pointer;
+}
+
+
+.success-toast {
+  @extend %default-toast;
+  color: #ffffff;
+  //background: #5ef5ab;
+  background: #3be3af;
+  //border-left: 6px solid #198754FF;
+}
+
+.info-toast {
+  @extend %default-toast;
+  color: #ffffff;
+  //background: #5ef5ab;
+  background: #5af7f0;
+  //border-left: 6px solid #198754FF;
+}
+
+// Warning
+.warning-toast {
+  @extend %default-toast;
+  background: #ffdd6d;
+  color: #ffffff;
+  //border-left: 6px solid #FFC107FF;
+}
+
+// Danger
+.danger-toast {
+  @extend %default-toast;
+  border-radius: 0.40em;
+  padding: 6px 8px;
+  background: #feedee;
+
+  .toast-icon{
+    padding: 0.3rem 0.6rem;
+    border-radius: .3rem;
+    color: #ffffff;
+    background-color: #f7525a;
+  }
+}
+

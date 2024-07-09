@@ -1,0 +1,10 @@
+<div *ngIf="isShow()" class="row text-start justify-content-start mt-1">
+  <p class="m-0 small" [class]="getColorClass()">
+    <span>
+      <i class="me-1" [class]="getIconClass()"></i>
+    </span>
+    <span class="">
+      {{message}}
+    </span>
+  </p>
+</div>

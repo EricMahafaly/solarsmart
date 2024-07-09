@@ -1,0 +1,47 @@
+
+
+<div class="header navbar shadow fixed-top d-flex justify-content-between align-items-center">
+  <div class="header-brand">
+    <div class="d-flex align-items-center" >
+      <a class="d-flex align-items-center" [routerLink]="''">
+        <img src="assets/img/logo.png" alt="" height="50" width="50">
+        <p class="logo-text ms-2 d-none d-sm-block">Solar smart system</p>
+      </a>
+    </div>
+  </div>
+  <ng-container *ngIf="userInfoData.loading">
+<!--    <div class="col-3">-->
+<!--      <ngx-skeleton-loader></ngx-skeleton-loader>-->
+<!--    </div>-->
+    <div>
+      <ngx-skeleton-loader appearance="circle"></ngx-skeleton-loader>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="!userInfoData.loading">
+<!--    <div class="">-->
+<!--      <div class="toggle" id="react-aria7170173132-:r0:" aria-expanded="false">-->
+<!--        <div class="search-box" style="width: 25rem;">-->
+<!--          <form class="position-relative">-->
+<!--            <input placeholder="Search..." type="text" class="search-input rounded-pill form-control form-control-sm" value="">-->
+<!--            <div class="input-icon">-->
+<!--              <li class="fas fa-search "></li>-->
+<!--            </div>-->
+<!--          </form>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+    <div class="navbar-nav align-items-center header-nav-icons flex-row">
+      <div class="nav-item position-relative">
+        <button #dropBtn class="nav-link pe-0 py-0 lh-1 h-100 d-flex align-items-center" (click)="toggleProfilAction()">
+          <p-avatar icon="pi pi-user" styleClass="mr-2" shape="circle"></p-avatar>
+        </button>
+        <app-dropdown
+          [show]="showProfilAction"
+          [parent]="dropBtn"
+          [data]="this.userInfoData.data"
+          (isShow)="setShow($event)"
+        ></app-dropdown>
+      </div>
+    </div>
+  </ng-container>
+</div>

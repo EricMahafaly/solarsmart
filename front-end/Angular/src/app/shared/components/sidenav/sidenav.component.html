@@ -1,0 +1,79 @@
+<!--<p>sidenav.ts works!</p>-->
+
+<div class="sidenav d-none d-md-block">
+
+  <div class="scroll-wrap  scroll-wrap-delayed">
+    <ng-container *ngFor="let groupItem of navGroup">
+          <nav class="sidenav-nav">
+            <div class="sidenav-nav-item">
+              <div>
+                <div class="text-uppercase text-primary">{{groupItem.group}}</div>
+                <div class="text-muted">{{groupItem.subTitle}}</div>
+              </div>
+            </div>
+            <ng-container *ngFor="let item of groupItem.items">
+              <div class="mb-1" >
+                <a class=" sidenav-nav-item nav-link cursor-pointer" (click)="onClickNav(item)"
+                   [class.active]="item.active"
+                   routerLinkActive="active"
+                   [routerLink]="item.routerLink ? [item.routerLink] : null"
+                   [routerLinkActiveOptions]="{exact: false}"
+                >
+                  <i class="sidenav-link-icon " [style.color]="item.iconColor" [ngClass]="item.icon"></i>
+                  <span class="sidenav-link-text">
+                    {{item.label}}
+                  </span>
+                </a>
+<!--                <a class=" sidenav-nav-item nav-link" [class.active]="item.active"-->
+<!--                   *ngIf="!item.items || (item.items && item.items.length ===0)"-->
+<!--                   [routerLink]="[item.routerLink]"-->
+<!--                   routerLinkActive="active"-->
+<!--                   [routerLinkActiveOptions]="{exact: false}"-->
+<!--                >-->
+<!--                  <i class="sidenav-link-icon" [ngClass]="item.icon"></i>-->
+<!--                  <span class="sidenav-link-text">-->
+<!--                    {{item.label}}-->
+<!--                  </span>-->
+<!--                </a>-->
+
+              </div>
+            </ng-container>
+          </nav>
+    </ng-container>
+<!--    <ul class="sidenav-nav">-->
+<!--      <ng-container *ngFor="let item of navItems">-->
+<!--        <li class="sidenav-nav-item" >-->
+<!--          &lt;!&ndash;        <a class="sidenav-nav-link" (click)="handleClick(item)"&ndash;&gt;-->
+<!--          &lt;!&ndash;           *ngIf="item.items && item.items.length > 0"&ndash;&gt;-->
+<!--          &lt;!&ndash;           [ngClass]="getActiveClass(item)"&ndash;&gt;-->
+<!--          &lt;!&ndash;        >&ndash;&gt;-->
+<!--          &lt;!&ndash;          <i class="sidenav-link-icon" [class]="item.icon"></i>&ndash;&gt;-->
+<!--          &lt;!&ndash;          <span class="sidenav-link-text" >{{item.label}}</span>&ndash;&gt;-->
+<!--          &lt;!&ndash;          <i *ngIf="item.items" class="menu-collapse-icon"&ndash;&gt;-->
+<!--          &lt;!&ndash;             [ngClass]="!item.expanded ? 'fas fa-angle-right' : 'fas fa-angle-down'">&ndash;&gt;-->
+
+<!--          &lt;!&ndash;          </i>&ndash;&gt;-->
+<!--          &lt;!&ndash;        </a>&ndash;&gt;-->
+<!--                  <a class="sidenav-nav-link"-->
+<!--                     *ngIf="!item.items || (item.items && item.items.length ===0)"-->
+<!--                     [routerLink]="[item.routerLink]"-->
+<!--                     routerLinkActive="active"-->
+<!--                     [routerLinkActiveOptions]="{exact: false}"-->
+<!--                  >-->
+<!--                    <i class="sidenav-link-icon" [ngClass]="item.icon"></i>-->
+<!--                    <span class="sidenav-link-text">-->
+<!--                      {{item.label}}-->
+<!--                    </span>-->
+<!--                  </a>-->
+<!--          &lt;!&ndash;        <div *ngIf="item.items && item.items.length > 0">&ndash;&gt;-->
+<!--          &lt;!&ndash;          <app-sub-level-menu&ndash;&gt;-->
+<!--          &lt;!&ndash;            [data]="item"&ndash;&gt;-->
+<!--          &lt;!&ndash;            [expanded]="item.expanded"&ndash;&gt;-->
+<!--          &lt;!&ndash;          ></app-sub-level-menu>&ndash;&gt;-->
+<!--          &lt;!&ndash;        </div>&ndash;&gt;-->
+
+<!--        </li>-->
+<!--      </ng-container>-->
+<!--    </ul>-->
+  </div>
+</div>

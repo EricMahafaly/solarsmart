@@ -1,0 +1,91 @@
+<div class="d-flex bg-white vh-100">
+  <div class="col-2 border-end" [horizontal]="true" [(ngbCollapse)]="collapseFilter">
+    <div class="d-flex flex-column">
+      <app-support-sidebar (selected)="filter($event)" ></app-support-sidebar>
+    </div>
+  </div>
+  <div class="d-flex col flex-column bg-white " >
+    <ng-container *ngIf="reports.loading">
+      <app-list-loader></app-list-loader>
+    </ng-container>
+    <ng-container *ngIf="!reports.loading">
+      <div class="d-flex align-items-center justify-content-between py-3 border-bottom fw-semibold bg-gray-50">
+        <div class="d-flex align-items-center">
+        <span class="btn"
+              (click)="collapseFilter = !collapseFilter"
+        >
+          <i class="fa-solid fa-bars"></i>
+        </span>
+          <div class="text-uppercase text-dark">{{label}}</div>
+        </div>
+        <div class="d-flex align-items-end">
+          <app-pagination
+            [pagination]="pagination"
+            [showPageNumber]="false"
+            (currentPage)="changePage($event)"
+          ></app-pagination>
+        </div>
+      </div>
+      <div class="d-inline-flex align-items-center w-100 scroll-bar overflow-x-auto justify-content-start p-2 border-bottom">
+        <ng-container *ngFor="let filter of sortDateFilter">
+          <div class="p-2 cursor-pointer ms-2 rounded-3 d-flex align-items-center border" [class.bg-primary-subtle]="filter.active" (click)="sort(filter)" >
+            {{filter.label}}<i class="ms-1 fas fa-check" *ngIf="filter.active"></i>
+          </div>
+        </ng-container>
+      </div>
+      <div class="flex-auto overflow-y-auto  scroll-bar">
+        <div class="text-secondary my-5 d-flex align-items-center justify-content-center flex-column" *ngIf="reports.data.length === 0">
+          <div><i class="fas fa-headset fs-1"></i></div>
+          <div class="mt-2 comment">
+            No report yet.
+          </div>
+        </div>
+        <div class="d-flex align-items-start py-4 px-4 border-bottom"
+             *ngFor="let report of reports.data; index as i">
+          <div class="position-relative d-flex flex-0 align-items-center justify-content-center w-10 h-10">
+            <p-avatar icon="pi pi-user" styleClass="mr-2" shape="circle"></p-avatar>
+          </div>
+          <div class="min-w-0 ms-4">
+            <div class="font-medium d-flex leading-5 text-truncate text-dark">
+              <div><a [routerLink]="'/user-space/customers/details/'+report.customerId">{{report.customerName}}</a></div>
+              <div class="ms-3 hover-info cursor-pointer" (click)="toggleChat(report)">
+                <i class="far fa-message"></i>
+              </div>
+
+            </div>
+            <div class="leading-5 text-secondary">
+
+              {{ showFullText[i] ? report.description : (report.description | truncate: 50) }}
+              <a class="cursor-pointer" *ngIf="report.description.length > 50" (click)="showFullText[i] = !showFullText[i]">
+                {{ showFullText[i] ? 'Voir moins' : '...' }}
+              </a>
+            </div>
+          </div>
+          <div class="d-flex flex-row align-items-start justify-content-center align-self-start ms-auto ps-2">
+            <div class="me-4 d-flex align-items-center btn-outline-success btn rounded-1"
+                 *ngIf="report.state !== ReportStateEnum.CLOSED"
+                 (click)="close(report)">
+              <span class="fw-bold me-2">Close</span>
+              <i class="fa-regular fa-check-circle "></i>
+            </div>
+<!--            <div class="me-3 " [class.cursor-pointer]="report.state !== ReportStateEnum.CLOSED" (click)="close(report)">-->
+<!--              <i class="{{getStateIcon(report)}} fa-check-circle text-success fs-18"></i>-->
+<!--            </div>-->
+            <div class="d-flex flex-column">
+              <div class="text-sm leading-5 text-secondary">{{report.createdDate | date:'dd/mm/yyyy'}}</div>
+              <div class="mt-1">
+                <span class="custom-badge text-light " [ngClass]="report.state === ReportStateEnum.CLOSED ? 'bg-success' : 'bg-warning'">{{report.state}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="col-5 border-start" *ngIf="reportActive">
+    <app-support-conversation [reportId]="reportActive.id"></app-support-conversation>
+<!--      </div>-->
+  </div>
+</div>

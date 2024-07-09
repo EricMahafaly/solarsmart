@@ -1,0 +1,14 @@
+<ng-container>
+  <table>
+    <tbody>
+    <tr *ngFor="let _ of this.getRow()">
+<!--      <td>Salut</td>-->
+<!--      <td>Hey</td>-->
+      <td *ngFor="let _c of this.getCol()">
+        <ngx-skeleton-loader [count]="1"></ngx-skeleton-loader>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+</ng-container>

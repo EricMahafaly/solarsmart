@@ -1,0 +1,29 @@
+//.list-section{
+//  max-width: 25rem !important;
+//}
+
+@media (min-width: 1280px) {
+  .max-w-100 {
+    max-width: 30rem !important;
+  }
+}
+
+.select-w{
+  width: 11rem !important;
+}
+
+.close-action{
+  padding: 0.2rem 1rem;
+  //&:hover{
+    border: 1px solid #00a046;
+  //}
+}
+
+.state-text{
+  font-size: .75rem;
+}
+
+
+//.p-tree{
+//  padding: 0 !important;
+//}

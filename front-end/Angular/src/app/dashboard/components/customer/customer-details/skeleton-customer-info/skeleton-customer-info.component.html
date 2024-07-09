@@ -1,0 +1,52 @@
+<div>
+  <div class="card card-custom">
+    <div class="card-header row">
+      <div class="col-auto">
+        <ngx-skeleton-loader
+          appearance="circle"
+          [theme]="{ width: '4rem', height: '4rem' }"
+        ></ngx-skeleton-loader>
+      </div>
+
+      <div class="col-2">
+        <ngx-skeleton-loader count="2" appearance="line" ></ngx-skeleton-loader>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <div class="row mt-3 ">
+        <div class="col-2">
+          <ngx-skeleton-loader count="1" appearance="line" ></ngx-skeleton-loader>
+          <div class="col-8">
+            <ngx-skeleton-loader count="2" appearance="line" ></ngx-skeleton-loader>
+          </div>
+        </div>
+
+        <div class="offset-5 col-2">
+          <ngx-skeleton-loader count="1" appearance="line" ></ngx-skeleton-loader>
+          <div class="col-8">
+            <ngx-skeleton-loader count="2" appearance="line" ></ngx-skeleton-loader>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mt-3 card-custom card-details">
+    <div class="card-body">
+      <div class="row align-items-center mt-3">
+        <div class="col-1">
+          <ngx-skeleton-loader appearance="line"></ngx-skeleton-loader>
+        </div>
+        <div class="col-1">
+          <ngx-skeleton-loader appearance="line"></ngx-skeleton-loader>
+        </div>
+        <div class="col-1">
+          <ngx-skeleton-loader appearance="line"></ngx-skeleton-loader>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

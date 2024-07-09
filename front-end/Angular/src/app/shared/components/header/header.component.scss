@@ -1,0 +1,64 @@
+@import url('https://fonts.cdnfonts.com/css/bankgothic-md-bt');
+
+$border-separator:#cbd0dd;
+
+.header{
+  height: 4rem;
+  width: 100%;
+  background: white;
+  //background: #0f172a;
+  padding: 0 1.5rem;
+  font-size: .8rem;
+  //border-bottom: solid 2px $border-separator;
+  border-bottom: 1px solid $border-separator;
+}
+
+.header-brand{
+  a{
+    text-decoration: none;
+
+    .logo-text{
+      font-size: 1.63625rem;
+      //font-family: 'BankGothic Md BT', sans-serif;
+      //font-family: 'Bank Gothic Light', sans-serif;
+      font-family: 'BankGothic', sans-serif;
+      //color: white;
+      //color: #6e7891;
+      color: #69ab25;
+      line-height: 1.2;
+      font-weight: 600;
+      letter-spacing: -0.04em;
+      margin-bottom: 0;
+    }
+  }
+}
+
+//.header-search{
+//  .search{
+//    padding-left: 2.5rem;
+//    box-shadow: none;
+//  }
+//
+//  .search-icon{
+//    position: absolute;
+//    color: var(--phoenix-gray-500);
+//    top: 50%;
+//    left: 1rem;
+//    transform: translateY(-48%);
+//  }
+//}
+
+.header-nav-icons{
+  .nav-item{
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-link{
+    padding: 0.75rem 0.5rem;
+  }
+
+
+}
+
+

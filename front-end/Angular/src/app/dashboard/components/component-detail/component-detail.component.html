@@ -1,0 +1,110 @@
+<!--<ng-container *ngIf="detailData.loading">-->
+<!--  <app-skeleton-composant-detail ></app-skeleton-composant-detail>-->
+<!--</ng-container>-->
+
+<ng-container *ngIf="data">
+  <div class="container">
+    <div class="card border-0">
+      <div class="card-header justify-content-between align-items-center d-sm-flex d-block">
+        <div class="card-title mb-sm-0 mb-2">Details </div>
+        <div class="toolbox d-sm-flex justify-content-between align-items-center">
+          <div #drop class="action dropdown ms-2">
+            <button class="btn dropdown-btn text-secondary bg-secondary-subtle" (click)="toggleDateOptions()" >Plages</button>
+            <app-select-generic
+              [parent]="drop"
+              [show]="plagesDatesIsShow"
+              [withSearch]="false"
+              [options]="this.plagesDates"
+              [positionClass]="'dropdown-menu-right'"
+              (isShow)="setPlagesDateShow($event)"
+              (selectChange)="setDatesActive($event)"
+            >
+
+            </app-select-generic>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+<!--          <app-date-filter [dateType]="DateFilter.SIMPLE" (dates)="setDateValue($event)" ></app-date-filter>-->
+          <app-date-filter [dateType]="DateFilter.DATE_RANGE" (dates)="setDateValue($event)" ></app-date-filter>
+        </div>
+        <div class="row justify-content-center my-2">
+          <div class="col-5 text-center d-flex flex-column justify-content-center">
+<!--            <p class="fw-semibold fs-15">Plage actuel</p>-->
+            <p class="fw-semibold fs-15">Current range</p>
+
+            <div class="row">
+              <div class="col ">
+                <div class="page-item ">
+                  <button class="page-link " (click)="onChangePage(getCurrentPage() - 1)">
+                    <i class="fa fa-chevron-left fs-7"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="col-9">
+                <span>{{getDates().start_date | date:'HH:mm'}}</span>
+                <ng-container *ngIf="getDates().end_date">
+                  à
+                  <span>{{getDates().end_date | date: 'HH:mm'}}</span>
+                </ng-container>
+              </div>
+              <div class="col">
+                <div class="page-item ">
+                  <button class="page-link" (click)="onChangePage(getCurrentPage() + 1)">
+                    <i class="fa fa-chevron-right fs-7"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class=" summary" *ngIf="value">
+            <p class="mb-2 fw-bold">{{value.domain}} :</p>
+            <div class="row">
+              <div class="so-summary-others me-3 col-2" *ngFor="let click of value.info">
+                <span class="so-circle"></span>
+                <div class="ms-4">
+                  <label class=" mb-0">{{click.label}}</label>
+                  <div class="" style="font-size: 14px;">
+                    <span >{{click.data}}</span>
+                    <span class="fw-bolder">{{click.unit}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-xxl col-sm-12">
+            <canvas
+              baseChart
+              [data]="chartData"
+              [options]="options"
+              [legend]="true"
+              (chartClick)="onClicked($event)"
+            >
+            </canvas>
+          </div>
+          <!--          <div class="col-sm-12 col-xxl-2 border-left mb-2" >-->
+          <!--            <div class=" summary" *ngIf="value">-->
+          <!--              <p class=" mb-2 fw-bold">{{value.domain}} :</p>-->
+          <!--              <div class="so-summary-others" *ngFor="let click of value.info">-->
+          <!--                <span class="so-circle"></span>-->
+          <!--                <div class="ms-4">-->
+          <!--                  <label class=" mb-0">{{click.label}}</label>-->
+          <!--                  <div class="" style="font-size: 14px;">-->
+          <!--                    <span >{{click.data}}</span>-->
+          <!--                    <span class="fw-bolder">{{click.unit}}</span>-->
+          <!--                  </div>-->
+          <!--                </div>-->
+          <!--              </div>-->
+          <!--            </div>-->
+          <!--          </div>-->
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ng-container>

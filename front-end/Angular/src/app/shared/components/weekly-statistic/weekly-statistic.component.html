@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-xxl-12 col-xl-12 col-md-12">
+    <div class="week-options d-flex col-5 col-sm-12 justify-content-center">
+      <ul class="nav d-flex justify-content-between mb-3 mx-9 gy-2" role="tablist">
+        <li class="nav-item mb-3 me-2" role="presentation" *ngFor="let weeklyData of data">
+          <button class="nav-link btn btn-flex option-active" (click)="activeOption(weeklyData)" [class.option-active]="isActive(weeklyData)">
+            {{weeklyData.tag}}
+          </button>
+        </li>
+      </ul>
+    </div>
+    <app-date-statistic
+      [data]="testData"
+    ></app-date-statistic>
+  </div>
+</div>

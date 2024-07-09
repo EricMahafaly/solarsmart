@@ -1,0 +1,89 @@
+<div class="container">
+<!--  <div class="row justify-content-center">-->
+
+    <form action="" [formGroup]="formData" (ngSubmit)="onSubmit()">
+      <div class="row align-items-center text-center justify-content-center">
+          <div class="d-flex justify-content-center align-items-center" [ngClass]="dateType === DateFilter.SIMPLE ? 'col-2': 'col-4'">
+            <div class="rounded-4 py-2  d-flex align-items-center justify-content-center border"
+                 [class.col-5]="dateType === DateFilter.DATE_RANGE"
+                 [ngClass]="isValid('start') ? 'input-required' : ''">
+
+<!--              <div>-->
+<!--                <p-calendar [hourFormat]="'24'" [readonlyInput]="true" [showTime]="true" [showSeconds]="false" [timeOnly]="true"></p-calendar>-->
+<!--              </div>-->
+              <div class="col-4">
+                <p-inputNumber
+                  formControlName="hour_start"
+                  inputStyleClass="form-control border-0"
+                  placeholder="12"
+                  [useGrouping]="false"
+                  [max]="23"
+                  [min]="0"
+                  [maxlength]="2"
+                > </p-inputNumber>
+              </div>
+              <div>
+                :
+              </div>
+              <div class="col-4">
+                <p-inputNumber
+                  formControlName="minute_start"
+                  inputStyleClass="form-control border-0"
+                  placeholder="00"
+                  inputStyle=""
+                  [useGrouping]="false"
+                  [min]="0"
+                  [max]="59"
+                  [maxlength]="2"
+                > </p-inputNumber>
+              </div>
+            </div>
+
+
+
+            <ng-container *ngIf="dateType === DateFilter.DATE_RANGE">
+              <div class="col-auto mx-2">
+<!--                <i class="pi pi-arrow-right"></i>-->
+                To
+              </div>
+              <div class="rounded-4 py-2  col-5 d-flex align-items-center justify-content-center border"
+                   [ngClass]="isValid('end') ? 'input-required' : ''">
+                <div class="col-4">
+                  <p-inputNumber
+                    formControlName="hour_end"
+                    inputStyleClass="form-control border-0"
+                    placeholder="12"
+                    [useGrouping]="false"
+                    [min]="0"
+                    [max]="23"
+                    [maxlength]="2"
+                  > </p-inputNumber>
+
+                </div>
+                <div>
+                  :
+                </div>
+                <div class="col-4">
+                  <p-inputNumber
+                    formControlName="minute_end"
+                    inputStyleClass="form-control border-0"
+                    placeholder="00"
+                    [useGrouping]="false"
+                    [min]="0"
+                    [max]="59"
+                    [maxlength]="2"
+                  ></p-inputNumber>
+
+                </div>
+              </div>
+            </ng-container>
+
+          </div>
+        <div class="col-auto">
+<!--          <button type="submit" class="btn btn-primary">Valid</button>-->
+          <button type="submit" class="btn btn-outline-success">Valid</button>
+        </div>
+      </div>
+    </form>
+<!--  </div>-->
+</div>

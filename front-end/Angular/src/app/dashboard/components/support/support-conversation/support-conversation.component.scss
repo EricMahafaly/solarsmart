@@ -1,0 +1,46 @@
+.-mr-px {
+  margin-right: -1px !important;
+}
+
+.-ml-px {
+  margin-left: -1px !important;
+}
+
+.-right-1 {
+  right: -.25rem !important;
+}
+
+.mb-px {
+  margin-bottom: 1px !important;
+}
+
+.py-message {
+  padding-top: .5rem !important;
+  padding-bottom: .5rem !important;
+}
+
+.px-message {
+  padding-left: .75rem !important;
+  padding-right: .75rem !important;
+}
+
+.-scale-x-1 {
+  //scale: -1 !important;
+  transform: translate(5%, 10%) rotate(0) skew(0) skewY(0) scaleX(-1) scaleY(1) !important;
+}
+
+.bg-gray-10{
+  background: #f0f0f0 !important;
+}
+
+.text-gray-10{
+  color: #f0f0f0 !important;
+}
+
+.-left-1 {
+  left: -.25rem !important;
+}
+
+.bg-message{
+  background: #69ab25;
+}

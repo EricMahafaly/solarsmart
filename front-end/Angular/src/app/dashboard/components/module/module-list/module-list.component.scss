@@ -1,0 +1,31 @@
+//.table-collapsed{
+//  tr {
+//
+//    td:not([colspan]) {
+//      cursor: pointer;
+//    }
+//  }
+//}
+
+.table-row-dashed{
+
+}
+
+.table th{
+  --bs-text-opacity:1;
+  color:var(--bs-secondary-color)!important;
+}
+
+.filter-section{
+  //padding: 0;
+  list-style: none;
+
+  li{
+    margin-top: 0.5rem;
+    margin-right: 1rem;
+  }
+}
+
+.action-button{
+  font-size: 12px !important;
+}

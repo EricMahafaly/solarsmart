@@ -1,0 +1,46 @@
+
+.sublevel-nav{
+  list-style: none;
+  margin-left: 0;
+
+  .sublevel-nav-item{
+    .sublevel-nav-link{
+      display: flex;
+      align-items: center;
+      height: 2.45rem;
+      color: #b6afaf;
+      text-decoration: none;
+      border-top-right-radius: 0.625rem;
+      border-bottom-right-radius: 0.625rem;
+      transition: all .3s ease;
+
+      //.sublevel-link-icon{
+      //  font-size: 4px;
+      //  width: 2rem;
+      //  min-width: 2rem;
+      //  margin: 0 0.5rem;
+      //}
+
+      .sublevel-link-text{
+        margin-left: 0.8rem;
+      }
+    }
+
+    .sublevel-nav-link:hover{
+      //color: #f3f3f3;
+      color: #60616a;
+    }
+  }
+}
+
+.active-sublevel{
+  //color: #f3f3f3 !important;
+  //background-color: #408dfb;
+  //opacity: 1;
+
+  border-left: 3px solid #66a1ff;
+  color: #66a1ff !important;
+  //background-color: #fff;
+  //background-color: #408dfb;
+  background-color: #ffffff;
+}

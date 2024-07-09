@@ -1,0 +1,29 @@
+<div class="align-items-center d-flex">
+  <div class="d-flex fs-9 col ">
+    <p class="mb-0 d-none d-sm-block me-3 fw-semi-bold">
+      {{getNumberOfFirstElement()}} - {{getNumberOfLastElement()}}<span class="text-secondary"> of </span>{{pagination.totalItems}}</p>
+  </div>
+  <div class="col-auto d-flex align-items-center">
+    <ul class="pagination custom-pagination my-0" *ngIf="pagination.totalItems > 0">
+      <li class="page-item " [class.disabled]="pagination.currentPage == 1">
+        <button class="page-link" (click)="onChangePage(pagination.currentPage -1)">
+          <span>
+            <i class="fa-solid fa-chevron-left"></i>
+          </span>
+        </button>
+      </li>
+      <ng-container *ngIf="showPageNumber">
+        <li  class="page-item" [class.active]="pagination.currentPage == page" *ngFor="let page of this.pages">
+          <button class="page-link" (click)="onChangePage(page)">{{page}}</button>
+        </li>
+      </ng-container>
+      <li class="page-item" [class.disabled]="pagination.currentPage == getTotalPage()">
+        <button class="page-link" (click)="onChangePage(pagination.currentPage +1)">
+          <span >
+            <i class="fa-solid fa-chevron-right"></i>
+          </span>
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>

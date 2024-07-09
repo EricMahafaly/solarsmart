@@ -1,0 +1,14 @@
+.btn-close-modal{
+
+  //background-color: #0caee0;
+  //color: #ffffff !important;
+
+  &:focus, &:focus-within, &:hover{
+    box-shadow: none;
+    color: #ffffff !important;
+  }
+}
+
+.icon-btn-modal{
+  color: #526edb;
+}

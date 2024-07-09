@@ -1,0 +1,120 @@
+<div class="auth-bg"></div>
+<div class="container-fluid">
+  <div class="login py-3">
+    <div class="col-xl-8 col-sm-10 col-11">
+      <div class="card border-1">
+        <div class="card-body">
+          <div class="gx-0 gy-7 row">
+            <div class="auth-title-box col-auto rounded-3 ">
+              <div class="card-sign-up position-relative px-4 px-lg-5 py-5 pb-sm-5 text-center text-md-start pb-lg-7">
+                <h3 class="mb-3 text-black fs-7 h3">Solar Smart System</h3>
+                <p class="desc">
+<!--                  Bienvenue sur le plateforme de solar smart system.-->
+                  Welcome to the solar smart system platform.
+                </p>
+                <!--                <p class="text-700">Give yourself some hassle-free development process with the uniqueness of Phoenix!</p>-->
+              </div>
+            </div>
+            <div class="mx-auto col">
+              <div class="text-center">
+                <span class="d-inline-block text-decoration-none mb-4" >
+                  <div class="fw-bolder fs-5 d-inline-block d-flex align-items-center">
+<!--                    <img src="./assets/img/logo.png" width="58"  alt="avatar"/>-->
+                    <img src="./assets/img/logo_text.png" width="90"  alt="avatar"/>
+                  </div>
+                </span>
+              </div>
+              <div class="auth-form-box">
+                <div class="text-center mb-5">
+                  <h3 class="h3">Sign Up</h3>
+<!--                  <p>Inscrivez-vous dès maintenant</p>-->
+                  <p>Register now</p>
+                </div>
+                <form [formGroup]="formGroup" action="" (ngSubmit)="onSubmit()">
+                  <div class="mb-3 text-start">
+                    <label class="form-label" for="nom">Name</label>
+                    <input formControlName="name" validation class="form-control" placeholder="Nom" type="text" id="nom" >
+<!--                    <div><app-error-field [control]="formGroup.controls['name']" ></app-error-field></div>-->
+                  </div>
+                  <div class="mb-3 text-start">
+                    <label class="form-label" for="last_name">Last Name</label>
+                    <input placeholder="Prénom" validation type="text" id="last_name" formControlName="lastName"
+                           class="form-control">
+<!--                    <div><app-error-field [control]="formGroup.controls['lastName']" ></app-error-field></div>-->
+                  </div>
+                  <div class="mb-3 text-start">
+                    <label class="form-label" for="last_name">Email Address</label>
+                    <input placeholder="Email" validation type="text" id="email" formControlName="email" class="form-control">
+                    <div>
+<!--                      <app-error-field [control]="formGroup.controls['email']" [message]="'Email invalid'"></app-error-field>-->
+                    </div>
+                  </div>
+                  <div class="mb-3 text-start">
+                    <div class="col-lg-12 col-sm-12">
+                      <div class="col-12">
+<!--                        <label class="form-label" >Mot de passe</label>-->
+                        <label class="form-label" >Password</label>
+                        <div>
+                          <p-password
+                            styleClass="col-12"
+                            placeholder="Password"
+                            formControlName="password"
+                            inputStyleClass="form-control"
+                            [toggleMask]="true"
+                            strongRegex="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()-_=+{};:,<.>]).{8,}$"
+                            mediumRegex="^(?=.*[a-z])(?=.*[A-Z]).{8,}$"
+                            weakLabel="Faible"
+                            mediumLabel="Moyenne"
+                            strongLabel="Fort"
+                            promptLabel="Saisissez votre mot de passe"
+                          >
+                            <ng-template pTemplate="footer">
+                              <p-divider type="dashed" styleClass="mt-2"></p-divider>
+                              <p class="mt-2">Suggestions</p>
+                              <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
+<!--                                <li>Au moins une minuscule</li>-->
+                                <li>At least one lowercase</li>
+                                <li>At least one uppercase</li>
+<!--                                <li>Au moins une caractère spéciale</li>-->
+                                <li>At least one special character</li>
+                                <li>At least one number</li>
+<!--                                <li>Au moins un chiffre</li>-->
+<!--                                <li>Minimum 8 caractères</li>-->
+                                <li>Minimum 8 characters</li>
+                              </ul>
+                            </ng-template>
+                          </p-password>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mb-3 text-start">
+                    <div>
+<!--                      <label class="form-label" for="confirmPassword">Confirmer votre mot de passe</label>-->
+                      <label class="form-label" for="confirmPassword">Confirm Password</label>
+                      <input placeholder="Confirm Password" validation type="password" formControlName="confirmPassword"
+                             id="confirmPassword" class="form-control">
+                      <div>
+                        <app-error-field
+                          [show]="formGroup.controls['confirmPassword'].touched"
+                          [valid]="confirmPassword()"
+                          [message]="'Must be the same as the password'"
+                        ></app-error-field></div>
+                    </div>
+                  </div>
+
+                  <button type="submit" class="w-100 mb-3 btn btn-success">Sign up</button>
+
+                  <div class="text-center">
+<!--                    <a class="fw-semibold text-decoration-none" [routerLink]="'/sign-in'">Connectez-vous à un compte existant</a>-->
+                    <a class="fw-semibold text-decoration-none" [routerLink]="'/sign-in'">Sign in to an existing account</a>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,126 @@
+<div>
+  <div class="d-flex g-0 g-md-4 g-xl-6 my-1 pb-4 justify-content-between border-end-dashed row">
+    <div *ngIf="!relaisInfoData.loading">
+      <div class="col-xxl-12 mb-4">
+        <p class="fs-15 mb-2 me-4 fw-semibold">Description: </p>
+        <div class="mb-2 text-muted">
+          <p class="">
+            On this section, you can see and track data about this customer's plug usage.
+          </p>
+        </div>
+      </div>
+      <div class="col-xxl-12">
+        <p class="fs-15 mb-2 me-4 fw-semibold">Details: </p>
+        <div>
+          <div class="mb-2" >
+            <p class="mb-1">
+                 <span class=" me-2">
+                   <i class="fa-solid fa-power-off align-middle fs-14 state-color" [class.active]="relaisInfoData.data.active" ></i>
+                </span>
+              State:
+              <span class="mx-1 state-color custom-badge bg-trans" [class.active]="relaisInfoData.data.active">
+                {{relaisInfoData.data.state}}
+              </span>
+              <span>
+                <button class="btn-detail-action" (click)="switchRelais()">
+                  <i class="fa fa-rotate" [class.fa-spin]="relaisInfoData.loading"></i>
+                </button>
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="border-end-dashed g-0 g-md-4 g-xl-6 my-1 pb-3">
+    <div class="d-flex justify-content-between my-2">
+      <div>
+        <span class="fs-15 my-2 me-4 fw-semibold">Statistics: </span>
+      </div>
+      <div>
+        <p-button
+          label="Export excel"
+          styleClass="btn btn-success border "
+          icon="pi pi-file-excel"
+          [rounded]="true"
+          (onClick)="onExport()"
+        ></p-button>
+      </div>
+    </div>
+    <div class="card border-0">
+      <div class="card-header justify-content-between align-items-center d-sm-flex d-block">
+        <div class="card-title mb-sm-0 mb-2"> Consumption </div>
+        <div class="toolbox d-sm-flex justify-content-between align-items-center">
+          <div #parent class="action dropdown ms-2">
+            <button class="btn dropdown-btn btn-outline-secondary" (click)="toggleFilterOption()" >{{optionActive.label}}</button>
+            <app-select-generic
+              [parent]="parent"
+              [show]="filterOptionState"
+              [withSearch]="false"
+              [options]="this.filterOptions"
+              [positionClass]="'dropdown-menu-right'"
+              (isShow)="setFilterOptionState($event)"
+              (selectChange)="setOptionActive($event)"
+            >
+
+            </app-select-generic>
+          </div>
+        </div>
+      </div>
+      <div class="card-body mb-2 position-relative">
+
+        <app-weekly-statistic-skeleton
+          *ngIf="optionActive.key == FilterDate.WEEK_BY_MONTH && consommationWeeklyData.loading"
+        ></app-weekly-statistic-skeleton>
+
+        <app-skeleton-date-statistic
+          *ngIf="optionActive.key == FilterDate.MONTH_BY_YEAR && consommationMonthlyData.loading"
+        ></app-skeleton-date-statistic>
+
+
+        <app-weekly-statistic
+          [data]="consommationWeeklyData.data"
+          [dataType]="'Consumption'"
+          [unit]="'KWh'"
+          *ngIf="optionActive.key == FilterDate.WEEK_BY_MONTH && !consommationWeeklyData.loading"
+        ></app-weekly-statistic>
+
+        <div class="col-xxl-12">
+          <app-monthly-statistic
+            [data]="consommationMonthlyData.data"
+            [dataType]="'Consumption'"
+            [unit]="'KWh'"
+            *ngIf="optionActive.key == FilterDate.MONTH_BY_YEAR && !consommationMonthlyData.loading"
+          ></app-monthly-statistic>
+        </div>
+      </div>
+    </div>
+    <div class="border-end-dashed g-0 g-md-4 g-xl-6 my-1 pb-3" *ngIf="!consommationData.loading">
+      <app-single-detail-component
+        [unit]="'KWh'"
+        [domain]="'Consumption'"
+        [data]="consommationData.data"
+        (datesRange)="setConsommationData($event)"
+      ></app-single-detail-component>
+    </div>
+
+    <ng-container *ngIf="!detailData.loading">
+<!--      <app-component-detail-->
+<!--        [data]="detailData.data"-->
+<!--        (datesRange)="setDetailData($event)"-->
+<!--        (search)="findDetail($event)"-->
+<!--        [value]="searchDetailVal"-->
+<!--      ></app-component-detail>-->
+
+      <app-component-detail
+        [data]="detailData.data"
+        (datesRange)="setDetailData($event)"
+      ></app-component-detail>
+    </ng-container>
+
+    <ng-container *ngIf="consommationData.loading || detailData.loading">
+      <app-skeleton-composant-detail></app-skeleton-composant-detail>
+    </ng-container>
+  </div>
+</div>

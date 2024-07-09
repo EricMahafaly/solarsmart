@@ -1,0 +1,40 @@
+$border-separator: #eceef1;
+//$border-separator:#cbd0dd;
+
+.body{
+  padding-top: 4rem;
+}
+
+@media (min-width: 992px){
+  .body{
+    margin-left: 14.875rem;
+
+    min-height: 100vh;
+    position: relative;
+    //padding: 4rem 1.5rem 4rem;
+
+    padding: 4rem 0 0 0;
+    //background: #f7f8fc;
+    //background: rgb(240, 241, 247);
+  }
+}
+
+.side-bar-fixed{
+  position: fixed;
+  z-index: 1;
+  top: 4rem;
+  width: 14.875rem;
+  border-right: solid 1px $border-separator;
+}
+
+
+.head{
+  //margin-left: 15rem;
+}
+
+.no-scroll{
+  //position: fixed;
+  width: 100%;
+  left: 0; /* Fixer la colonne à gauche */
+  //z-index: 1;
+}

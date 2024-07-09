@@ -1,0 +1,99 @@
+<div class="row">
+  <div class="col-12 position-relative">
+    <!--    <p class="fs-15 my-2 me-4 fw-semibold">{{domain}}: </p>-->
+    <div class="card border-0">
+      <div class="card-header justify-content-between align-items-center d-sm-flex d-block">
+        <div class="card-title mb-sm-0 mb-2">{{domain}} </div>
+        <div class="toolbox d-sm-flex justify-content-between align-items-center">
+          <div #parent class="action dropdown ms-2">
+            <button class="btn dropdown-btn bg-secondary-subtle text-secondary" (click)="toggleFilterOption()" >Plages</button>
+            <app-select-generic
+              [parent]="parent"
+              [show]="filterShow"
+              [withSearch]="false"
+              [options]="this.filterDates"
+              [positionClass]="'dropdown-menu-right'"
+              (isShow)="setFilterState($event)"
+              (selectChange)="setDatesActive($event)"
+            >
+
+            </app-select-generic>
+          </div>
+        </div>
+      </div>
+      <div class="card-body mb-2">
+        <div class="row py-2">
+          <app-date-filter [dateType]="DateFilter.DATE_RANGE" (dates)="setDateValue($event)"></app-date-filter>
+        </div>
+        <div class="row justify-content-center my-2">
+          <div class="col-5 text-center d-flex flex-column justify-content-center">
+<!--            <p class="fw-semibold fs-15">Plage actuel</p>-->
+            <p class="fw-semibold fs-15">Current range</p>
+
+            <div class="row">
+              <div class="col ">
+                <div class="page-item ">
+                  <button class="page-link " (click)="onChangePage(getCurrentPage() - 1)">
+                    <i class="fa fa-chevron-left fs-7"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="col-9">
+                <span>{{getDates().start_date | date:'HH:mm'}}</span> à
+                <span>{{getDates().end_date | date: 'HH:mm'}}</span>
+              </div>
+              <div class="col">
+                <div class="page-item ">
+                  <button class="page-link" (click)="onChangePage(getCurrentPage() + 1)">
+                    <i class="fa fa-chevron-right fs-7"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="summary">
+            <p class=" mb-2 fw-bold">{{domain}} :</p>
+            <div class="row">
+              <div class="so-summary-others me-2 col-auto" *ngIf="selected">
+                <span class="so-circle"></span>
+                <div class="ms-4">
+                  <label class=" mb-0">{{selected.label}}</label>
+                  <div class="" style="font-size: 14px;">
+                    <span >{{selected.data}}</span>
+                    <span class="fw-bolder">{{unit}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row ">
+          <div class="col-xxl col-sm-12" >
+            <app-chart-statistic
+              [data]="chartData"
+              [options]="chartOption"
+              (clicked)="chartClicked($event)"
+            ></app-chart-statistic>
+          </div>
+<!--          <div class="col-xxl-3 col-sm-12 border-left">-->
+<!--            <div class="summary">-->
+<!--              <p class=" mb-2 fw-bold">{{domain}} :</p>-->
+<!--              <div class="so-summary-others" *ngIf="selected">-->
+<!--                <span class="so-circle"></span>-->
+<!--                <div class="ms-4">-->
+<!--                  <label class=" mb-0">{{selected.label}}</label>-->
+<!--                  <div class="" style="font-size: 14px;">-->
+<!--                    <span >{{selected.data}}</span>-->
+<!--                    <span class="fw-bolder">{{unit}}</span>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

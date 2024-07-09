@@ -1,0 +1,30 @@
+
+
+
+.table-header-icon{
+  margin-right: .2rem;
+  padding: .2rem .4rem;
+  border-radius: .3rem;
+}
+
+.table-header-icon.success{
+  color: rgba(28, 108, 9, 1);
+  background: rgba(217, 251, 208, 1) !important;
+}
+
+.table-header-icon.primary{
+  background: rgba(229, 237, 255, 1);
+  color: rgba(0, 60, 199, 1);
+}
+
+.table-link{
+  text-decoration: none;
+  color: #31374a ;
+}
+
+.text-hover-underline{
+  &:hover{
+    text-decoration: underline #31374a !important;
+  }
+}
+

@@ -1,0 +1,110 @@
+<div class="vh-100 bg-white">
+  <div class="position-relative bg-white d-flex align-items-center justify-content-between py-4 px-5 border-bottom">
+    <div class="">
+      <div class="fs-4 font-extrabold tracking-tight text-gold-50">Clients</div>
+      <div class="text-muted font-medium" *ngIf="!customerData.loading">{{pagination.totalItems}} clients</div>
+    </div>
+    <div>
+      <div class="d-flex text-muted">
+        <div class="search-box me-2">
+          <div class="position-relative">
+            <input placeholder="Search by name" [formControl]="searchControl" type="text" class="search-input form-control">
+            <div class="input-icon">
+              <i class="fa fa-search"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex flex-column vh-100 overflow-y-auto">
+    <div class="text-secondary my-5 d-flex align-items-center justify-content-center flex-column" *ngIf="customerData.data.length === 0">
+      <div><i class="pi pi-users fs-1"></i></div>
+      <div class="mt-2 comment">
+        No clients found.
+      </div>
+    </div>
+    <table matSort (matSortChange)="sort($event)" class="overflow-y-auto align-middle" *ngIf="customerData.data.length > 0" matSortDisableClear >
+      <thead class=" sticky-top">
+        <tr class="shadow fw-semibold text-muted bg-gray-50 z-3">
+          <th class="px-1"></th>
+          <th mat-sort-header="name" class="px-4 py-3">Name</th>
+          <th mat-sort-header="email" class="px-4 py-3">Email</th>
+          <th mat-sort-header="address" class="px-4 py-3">Address</th>
+        </tr>
+      </thead>
+      <tbody>
+      <ng-container *ngIf="this.customerData.loading">
+        <tr *ngFor="let _ of getRow()">
+          <td></td>
+          <td class="ps-4 p-3"><p-skeleton></p-skeleton></td>
+          <td class="p-2"><p-skeleton></p-skeleton></td>
+          <td class="p-2"><p-skeleton></p-skeleton></td>
+<!--          <td class="ps-4 pt-3">-->
+<!--            <ngx-skeleton-loader-->
+<!--              [theme]="{-->
+<!--                      width: '150px',-->
+<!--                      }"-->
+<!--            ></ngx-skeleton-loader >-->
+<!--          </td>-->
+<!--          <td>-->
+<!--            <ngx-skeleton-loader-->
+<!--              [theme]="{-->
+<!--                      width: '150px'-->
+<!--                      }"-->
+<!--            ></ngx-skeleton-loader >-->
+<!--          </td>-->
+<!--          <td>-->
+<!--            <ngx-skeleton-loader-->
+<!--              [theme]="{-->
+<!--                      width: '150px'-->
+<!--                      }"-->
+<!--            ></ngx-skeleton-loader >-->
+<!--          </td>-->
+        </tr>
+      </ng-container>
+      <ng-container *ngIf="!customerData.loading">
+        <tr *ngFor="let customer of customerData.data" class="border-bottom">
+          <td></td>
+          <td class="py-3 px-2">
+            <div class="d-flex align-items-center">
+              <a [routerLink]="'/user-space/customers/details/1'" class="text-dark">
+                <span class="me-3 ">
+                  <p-avatar icon="pi pi-user" styleClass="mr-2" shape="circle" *ngIf="!customer.image"></p-avatar>
+                </span>
+                <span class="me-" *ngIf="customer.image">
+                  <p-avatar [image]="customer.image" styleClass="mr-2" size="xlarge" shape="circle"></p-avatar>
+                </span>
+              </a>
+              <div class="d-flex flex-column">
+                <a class="fw-bolder fs-15 table-row-link text-capitalize" [routerLink]="'/user-space/customers/details/'+customer.id">
+                  {{customer.name}} {{customer.lastName}}
+                </a>
+              </div>
+            </div>
+          </td>
+          <td>
+            <a href="mailto:{{customer.email}}" class="table-link text-hover-underline">{{customer.email}}</a>
+          </td>
+          <td>
+            <p class="me-2 m-0">
+<!--              <i class="fa fa-building-circle-exclamation"></i>-->
+              <i class="fa fa-location-dot"></i>
+              {{customer.address}}
+              <span class="text-muted ms-1">{{customer.postalCode}}</span>
+            </p>
+          </td>
+        </tr>
+      </ng-container>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="table-footer px-4 py-2 position-sticky sticky-bottom border-top mt-3 shadow fw-semibold  bg-gray-50 z-3" *ngIf="!customerData.loading">
+      <app-pagination
+        [pagination]="pagination"
+        (currentPage)="changePage($event)"
+      ></app-pagination>
+  </div>
+
+</div>
