@@ -12,10 +12,13 @@ import org.springframework.stereotype.Service;
 
 import java.security.Key;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 
 @Service
 public class TokenService {
+
+    private final ConcurrentHashMap<String, String> tokenStore = new ConcurrentHashMap<>();
 
     @Value("${token.secret.key}")
     String jwtSecretKey;
@@ -109,4 +112,13 @@ public class TokenService {
         return (username.equals(userDetails.getEmail()));
     }
 
+    public boolean deleteToken(String token) {
+        String key = this.createKey(token);
+        return tokenStore.remove(key) != null;
+    }
+
+    private String createKey(String token) {
+        // Implémentez la logique pour créer une clé unique pour le jeton
+        return token; // Exemple simple, à modifier selon vos besoins
+    }
 }
